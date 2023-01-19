@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="propiedades_oferentes_view_tree" model="ir.ui.view">
+        <field name="name">propiedades.oferentes.tree</field>
+        <field name="model">propiedades.oferentes</field>
+        <field name="arch" type="xml">
+            <tree string="Channel">
+                <field name="price"/>
+                <field name="partner_id"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="propiedades_oferentes_view_form" model="ir.ui.view">
+        <field name="name">propiedades.oferentes.form</field>
+        <field name="model">propiedades.oferentes</field>
+        <field name="arch" type="xml">
+            <form string="propiedades_oferentes_form">
+                <field name="price"/>
+                <field name="partner_id"/>
+                <field name="status"/>
+            </form>
+        </field>
+    </record>
+
+</odoo>

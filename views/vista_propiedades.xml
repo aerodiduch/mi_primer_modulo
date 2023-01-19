@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="propiedades_action" model="ir.actions.act_window">
+            <field name="name">Increíble gestor de propiedades</field>
+            <field name="res_model">propiedades</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="propiedades_view_tree" model="ir.ui.view">
+            <field name="name">propiedades.tree</field>
+            <field name="model">propiedades</field>
+            <field name="arch" type="xml">
+                <tree string="Channel">
+                    <field name="name"/>
+                    <field name="tags_ids"/>
+                    <field name="postcode"/>
+                    <field name="property_type"/>
+                    <field name="bedrooms"/>
+                    <field name="living_area" string="Living Area (sqm)"/>
+                    <field name="expected_price"/>
+                    <field name="selling_price"/>
+                    <field name="date_availability" string="Available From"/>
+                </tree>
+            </field>
+    </record>
+
+    <record id="propiedades_view_form" model="ir.ui.view">
+        <field name="name">propiedades.form</field>
+        <field name="model">propiedades</field>
+        <field name="arch" type="xml">
+            <form string="Test">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" string="Name"/>
+                            <field name="tags_ids" widget="many2many_tagss"/>
+                            <field name="property_type"/>
+                            <field name="postcode"/>
+                            <field name="date_availability" string="Available From"/>
+                        </group>
+                        <group>
+                            <field name="expected_price"/>
+                            <field name="selling_price"/>
+                        </group>
+                        <notebook>
+                            <page string="Pestaña">
+                                <group>
+                                <field name="description" placeholder="test"/>
+                                <field name="bedrooms" string="Bedrooms"/>
+                                <field name="living_area" string="Living Area (sqm)"/>
+                                <field name="facades" string="Facades"/>
+                                <field name="garage" string="Garage"/>
+                                <field name="garden" string="Garden"/>
+                                <field name="garden_area" string="Garden Area (sqm)"/>
+                                <field name="garden_orientation" string="Garden Orientation"/>
+                                <field name="state" string="Estado de la propiedad"/>
+                                </group>
+                            </page>
+                            <page string="Offers">
+                                <group>
+                                <field name="offer_ids" widget="one2many_oferentes"/>
+                                </group>
+                            </page>
+                            <page string="Other info">
+                                <group>
+                                <field name="salesperson"/>
+                                <field name="buyer"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

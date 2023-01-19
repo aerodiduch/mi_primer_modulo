@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<odoo>
+    <menuitem id="propiedades_menu_root" name="Propiedades Pepito">
+        <menuitem id="propiedades_first_level_menu" name="Listado">
+            <menuitem id="propiedades_model_menu_action" action="propiedades_action" name="Ver listado"/>
+        </menuitem>
+        <menuitem id="propiedades_test_first_level_menu" name="Settings">
+            <menuitem id="propiedades_test_model_menu_action" action="propiedades_tipo_action" name="Tipos de propiedades"/>
+            <menuitem id="propiedades_tags_menu_action" action="propiedades_tagss_action" name="Tags de propiedades"/>
+        </menuitem>
+    </menuitem>
+</odoo>

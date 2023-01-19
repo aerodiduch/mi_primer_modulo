@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+mi_primer_modulo.access_propiedades,access_propiedades,mi_primer_modulo.model_propiedades,base.group_user,1,1,1,1
+mi_primer_modulo.access_propiedades_tipo,access_propiedades_tipo,mi_primer_modulo.model_propiedades_tipo,base.group_user,1,1,1,1
+mi_primer_modulo.access_propiedades_tagss,access_propiedades_tagss,mi_primer_modulo.model_propiedades_tagss,base.group_user,1,1,1,1
+mi_primer_modulo.access_propiedades_oferentes,access_propiedades_oferentes,mi_primer_modulo.model_propiedades_oferentes,base.group_user,1,1,1,1
