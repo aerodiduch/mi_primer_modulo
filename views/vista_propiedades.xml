@@ -33,7 +33,7 @@
                     <group>
                         <group>
                             <field name="name" string="Name"/>
-                            <field name="tags_ids" widget="many2many_tagss"/>
+                            <field name="tags_ids"/>
                             <field name="property_type"/>
                             <field name="postcode"/>
                             <field name="date_availability" string="Available From"/>
@@ -41,6 +41,7 @@
                         <group>
                             <field name="expected_price"/>
                             <field name="selling_price"/>
+                            <field name="best_price"/>
                         </group>
                         <notebook>
                             <page string="Pestaña">
@@ -53,13 +54,14 @@
                                 <field name="garden" string="Garden"/>
                                 <field name="garden_area" string="Garden Area (sqm)"/>
                                 <field name="garden_orientation" string="Garden Orientation"/>
+                                <field name="total_area" string="Total area (sqm)"/>
                                 <field name="state" string="Estado de la propiedad"/>
                                 </group>
                             </page>
                             <page string="Offers">
-                                <group>
+
                                 <field name="offer_ids" widget="one2many_oferentes"/>
-                                </group>
+
                             </page>
                             <page string="Other info">
                                 <group>
