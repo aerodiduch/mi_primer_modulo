@@ -1,10 +1,12 @@
 from odoo import api, fields, models
 from odoo.tools import date_utils
+from odoo.exceptions import UserError
 
 
 class Propiedades(models.Model):
     _name = "propiedades"
     _description = "mi primer modulo"
+    _order = "id desc"
 
     name = fields.Char(required=True)
     description = fields.Text()
@@ -57,6 +59,19 @@ class Propiedades(models.Model):
     total_area = fields.Float(compute="_compute_total_area")
     best_price = fields.Float(compute="_compute_best_price")
 
+    _sql_constraints = [
+        (
+            "check_property_price",
+            "CHECK(expected_price > 0)",
+            "Expected price must be greater than 0. Dale amigo",
+        ),
+        (
+            "check_selling_price",
+            "CHECK(selling_price > 0)",
+            "Selling price must be strictly positive.",
+        ),
+    ]
+
     @api.depends("garden_area", "living_area")
     def _compute_total_area(self):
         for record in self:
@@ -66,3 +81,31 @@ class Propiedades(models.Model):
     def _compute_best_price(self):
         for record in self:
             record.best_price = max(record.mapped("offer_ids.price"), default=0)
+
+    @api.onchange("garden")
+    def _onchange_garden_status(self):
+        self.garden_area = 0
+        self.garden_orientation = ""
+        if self.garden:
+            self.garden_area = 10
+            self.garden_orientation = "north"
+
+    def action_sold(self):
+        for record in self:
+            if record.state == "cancelled":
+                raise UserError("You can't sell a canceled property")
+            elif record.state == "sold":
+                raise UserError("Property is already sold")
+            else:
+                record.state = "sold"
+        return True
+
+    def action_canceled(self):
+        for record in self:
+            if record.state == "sold":
+                raise UserError("You can't cancel a sold property")
+            elif record.state == "canceled":
+                raise UserError("Property is already canceled")
+            else:
+                record.state = "canceled"
+        return True
