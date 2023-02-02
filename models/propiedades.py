@@ -72,6 +72,14 @@ class Propiedades(models.Model):
         ),
     ]
 
+    @api.ondelete(at_uninstall=False)
+    def _unlink_if_offer_received_or_sold(self):
+        for record in self:
+            if record.state != "new" or record.state != "canceled":
+                raise UserError(
+                    "Cannot delete a property that is sold or has received an offer."
+                )
+
     @api.depends("garden_area", "living_area")
     def _compute_total_area(self):
         for record in self:

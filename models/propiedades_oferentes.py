@@ -18,6 +18,7 @@ class Oferentes(models.Model):
     )
     partner_id = fields.Many2one("res.partner", required=True)
     property_id = fields.Many2one("propiedades", required=True)
+    property_type_id = fields.Many2one(related="property_id.property_type", store=True)
 
     validity = fields.Integer(
         compute="_compute_validity", inverse="_inverse_validity", default=7
@@ -36,6 +37,13 @@ class Oferentes(models.Model):
             "Offer price must be strictly positive",
         )
     ]
+
+    @api.model  # pendiente hacer la comprobacion de que no pude ser una oferta mas barata que la anterior
+    def create(self, vals):
+        property = self.env["propiedades"].browse(vals["property_id"])
+        property.state = "offer_received"
+        property.write({"state": property.state})
+        return super().create(vals)
 
     @api.depends("date_deadline")
     def _compute_validity(self):

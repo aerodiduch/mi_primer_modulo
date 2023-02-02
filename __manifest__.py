@@ -11,5 +11,6 @@
         "views/vista_propiedades_oferentes.xml",
         "views/menu_propiedades.xml",
         "views/search_propiedades.xml",
+        "views/res_users_views.xml",
     ],
 }
